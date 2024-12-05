@@ -1,0 +1,289 @@
+<div style="padding-top: 20px">
+  <div class="col-15">
+    <div class="card">
+      <div class="card-header bg-success">New Client</div>
+      <div class="card-body">
+        <form #formElement="ngForm" class="form-control-lg">
+          <div class="row">
+            <div class="col-6">
+              <label for="contactPersonName">Name</label>
+              <input
+                #personName="ngModel"
+                [(ngModel)]="clientObject.contactPersonName"
+                class="form-control"
+                id="contactPersonName"
+                name="contactPersonName"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (personName?.errors?.["required"] && personName?.touched) {
+                  <span>Name is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="contactNo">Contact</label>
+              <input
+                #contactNo="ngModel"
+                [(ngModel)]="clientObject.contactNo"
+                class="form-control"
+                id="contactNo"
+                name="contactNo"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (contactNo?.errors?.["required"] && contactNo?.touched) {
+                  <span>Contact Number is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="companyName">Company</label>
+              <input
+                #companyName="ngModel"
+                [(ngModel)]="clientObject.companyName"
+                class="form-control"
+                id="companyName"
+                name="companyName"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  companyName?.errors?.["required"] && companyName?.touched
+                ) {
+                  <span>Company Name is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="city">City</label>
+              <input
+                #city="ngModel"
+                [(ngModel)]="clientObject.city"
+                class="form-control"
+                id="city"
+                name="city"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (city?.errors?.["required"] && city?.touched) {
+                  <span>City is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="state">State</label>
+              <input
+                #state="ngModel"
+                [(ngModel)]="clientObject.state"
+                class="form-control"
+                id="state"
+                name="state"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (state?.errors?.["required"] && state?.touched) {
+                  <span>State is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="pincode">Pincode</label>
+              <input
+                #pincode="ngModel"
+                [(ngModel)]="clientObject.pincode"
+                class="form-control"
+                id="pincode"
+                name="pincode"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (pincode?.errors?.["required"] && pincode?.touched) {
+                  <span>Pincode is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="address">Address</label>
+              <textarea
+                [(ngModel)]="clientObject.address"
+                class="form-control"
+                id="address"
+                name="address"
+              ></textarea>
+            </div>
+
+            <div class="col-6">
+              <label for="employeeStrength">Employee Strength</label>
+              <input
+                #employeeStrength="ngModel"
+                [(ngModel)]="clientObject.employeeStrength"
+                class="form-control"
+                id="employeeStrength"
+                name="employeeStrength"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  employeeStrength?.errors?.["required"] &&
+                  employeeStrength?.touched
+                ) {
+                  <span>Employee Strength is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="gstNo">GST Number</label>
+              <input
+                #gstNo="ngModel"
+                [(ngModel)]="clientObject.gstNo"
+                class="form-control"
+                id="gstNo"
+                name="gstNo"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (gstNo?.errors?.["required"] && gstNo?.touched) {
+                  <span>GST Number is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="regNo">Registration Number</label>
+              <input
+                #regNo="ngModel"
+                [(ngModel)]="clientObject.regNo"
+                class="form-control"
+                id="regNo"
+                name="regNo"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (regNo?.errors?.["required"] && regNo?.touched) {
+                  <span>Registration Number is required</span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="row pt-4 justify-content-center">
+            <div class="col-4 text-center">
+              <button (click)="onResetForm()" class="btn btn-secondary mx-2">
+                Reset Form
+              </button>
+              <button
+                (click)="onSaveClient()"
+                [disabled]="!formElement.valid"
+                class="btn btn-success mx-2"
+              >
+                {{ clientObject.clientId ? "Update" : "Save" }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding-top: 30px">
+    <div class="row">
+      @if (isLoading) {
+        <div class="col-12 text-center">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="col-15">
+          <div class="card">
+            <div class="card-header bg-success">Client List</div>
+            <div class="card-body">
+              <table class="table table-bordered border-primary">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Company</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Address</th>
+                    <th>Employee Strength</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of clientList; track item) {
+                    <tr>
+                      <td>{{ item.contactPersonName }}</td>
+                      <td>{{ item.contactNo }}</td>
+                      <td>{{ item.companyName }}</td>
+                      <td>{{ item.city }}</td>
+                      <td>{{ item.state }}</td>
+                      <td>{{ item.address }}</td>
+                      <td>{{ item.employeeStrength }}</td>
+
+                      <td>
+                        <div>
+                          <button
+                            class="btn btn-primary mx-2"
+                            (click)="onEditClient(item)"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-danger mx-2"
+                            (click)="onDeleteClient(item.clientId)"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

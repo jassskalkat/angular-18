@@ -1,0 +1,99 @@
+<div style="padding-left: 50px">
+  <div class="row">
+    <div class="col-4">
+      <ul>
+        @for (item of designationList; track item) {
+          <li>
+            {{ item.designation }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="col-4">
+      <select class="form-select-sm">
+        @for (item of designationList; track item) {
+          <option [value]="item.designationId">
+            {{ item.designation }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="col-4">
+      @for (item of designationList; track item) {
+        <button class="btn btn-warning mx-5" [value]="item.designationId">
+          {{ item.designation }}
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+<div style="padding-left: 50px; padding-top: 50px; padding-right: 50px">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered border-primary">
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Role Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of designationList; track item) {
+            <tr>
+              <td>{{ item.designationId }}</td>
+              <td>{{ item.designation }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="padding-top: 50px">
+    <div class="row">
+      @if (isLoading) {
+        <div class="col-12 text-center">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        @for (item of designationList; track item) {
+          <div class="col-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">{{ item.designation }}</h4>
+                <a href="#" class="card-link">Edit</a>
+                <a href="#" class="card-link">Delete</a>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

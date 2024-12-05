@@ -1,0 +1,38 @@
+<div class="row" style="padding-top: 20px">
+  <div class="col-12 text-center">
+    <div class="btn-group">
+      <button
+        (click)="changeComponent('Roles')"
+        [ngClass]="
+          currenComponent === 'Roles' ? 'btn-success' : 'btn-secondary'
+        "
+        class="btn"
+        type="button"
+      >
+        Roles
+      </button>
+      <button
+        (click)="changeComponent('Designation')"
+        [ngClass]="
+          currenComponent === 'Designation' ? 'btn-success' : 'btn-secondary'
+        "
+        class="btn btn-primary"
+        type="button"
+      >
+        Designation
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="padding-top: 50px">
+  <div class="col-12">
+    @if (this.currenComponent === "Roles") {
+      <app-roles></app-roles>
+    }
+    @if (this.currenComponent === "Designation") {
+      <app-designation></app-designation>
+    }
+  </div>
+</div>
+

@@ -1,0 +1,148 @@
+<div style="padding-left: 50px">
+  <div class="row">
+    <div class="col-3">
+      <p>{{ fullName }}</p>
+    </div>
+
+    <div class="col-3">
+      <p>{{ age }}</p>
+    </div>
+
+    <div class="col-3">
+      <p>{{ currentRole }}</p>
+    </div>
+
+    <div class="col-3">
+      <p>{{ company }}</p>
+    </div>
+  </div>
+</div>
+
+<div style="padding-left: 50px">
+  <div class="row">
+    <div class="col-3">
+      <input
+        [(ngModel)]="fullName"
+        [value]="fullName"
+        class="form-control"
+        type="text"
+      />
+    </div>
+
+    <div class="col-3">
+      <input [type]="inputType1" />
+    </div>
+
+    <div class="col-3">
+      <input [type]="inputType2" />
+    </div>
+
+    <div class="col-3">
+      <input (click)="printCompany()" [type]="inputType3" />
+    </div>
+  </div>
+</div>
+
+<div style="padding-left: 50px; padding-top: 20px">
+  <div class="row">
+    <div class="col-3">
+      <button (click)="printName()" class="btn btn-success">Full Name</button>
+    </div>
+
+    <div class="col-3">
+      <button (click)="printAge()" class="btn btn-success">Age</button>
+    </div>
+
+    <div class="col-3">
+      <button (click)="printRole()" class="btn btn-success">Role</button>
+    </div>
+
+    <div class="col-3">
+      <button (click)="printCompany()" class="btn btn-success">Company</button>
+    </div>
+  </div>
+</div>
+
+<div style="padding-left: 50px; padding-top: 20px">
+  <div class="row" style="padding-top: 50px">
+    <div class="col-4">
+      <ul>
+        @for (item of roleList; track item) {
+          <li>
+            {{ item.role }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="col-4">
+      <select class="form-select">
+        @for (item of roleList; track item) {
+          <option [value]="item.roleId">
+            {{ item.role }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="col-4">
+      @for (item of roleList; track item) {
+        <button class="btn btn-warning mx-2" [value]="item.roleId">
+          {{ item.role }}
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+<div style="padding-left: 50px; padding-top: 20px">
+  <div class="row">
+    @if (isLoading) {
+      <div class="col-12 text-center">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    } @else {
+      <div class="col-12">
+        <table class="table table-bordered border-primary">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Role Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of roleList; track item) {
+              <tr>
+                <td>{{ item.roleId }}</td>
+                <td>{{ item.role }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>
