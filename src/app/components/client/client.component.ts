@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ClientsService } from '../../services/clients.service';
-import { IClients } from '../../model/interface/clients/clients.interface';
+import { IClients } from '../../model/interface/clients/client.interface';
 import { IClientsResponse } from '../../model/interface/clients/response.interface';
 import { Client } from '../../model/class/Client';
 import { FormsModule } from '@angular/forms';
@@ -22,16 +22,18 @@ export class ClientComponent implements OnInit {
   }
 
   getAllClients(): void {
-    this.clientsService.getClients().subscribe((response: IClientsResponse) => {
-      if (response.result) {
-        this.isLoading = false;
-        this.clientList = response.data;
-        console.log('Clients: ', response.data);
-      } else {
-        console.error('Error: ', response.message);
-        alert('Error: ' + response.message);
-      }
-    });
+    this.clientsService
+      .getClients()
+      .subscribe((response: IClientsResponse): void => {
+        if (response.result) {
+          this.isLoading = false;
+          this.clientList = response.data;
+          console.log('Clients: ', response.data);
+        } else {
+          console.error('Error: ', response.message);
+          alert('Error: ' + response.message);
+        }
+      });
   }
 
   onResetForm(): void {

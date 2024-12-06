@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IRoles } from '../../model/interface/roles/roles.interface';
+import { IRoles } from '../../model/interface/roles/role.interface';
 import { IRolesResponse } from '../../model/interface/roles/response.interface';
 import { RolesService } from '../../services/roles.service';
 

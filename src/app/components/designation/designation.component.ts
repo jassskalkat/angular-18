@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { DesignationsService } from '../../services/designations.service';
 import { IDesignationsResponse } from '../../model/interface/designations/response.interface';
-import { IDesignations } from '../../model/interface/designations/designations.interface';
+import { IDesignations } from '../../model/interface/designations/designation.interface';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({

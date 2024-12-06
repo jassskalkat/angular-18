@@ -1,1 +1,302 @@
-<p>client-project works!</p>
+<div style="padding-top: 20px">
+  <div class="col-15">
+    <div class="card">
+      <div class="card-header bg-success">New Client</div>
+      <div class="card-body">
+        <form #formElement="ngForm" class="form-control-lg">
+          <div class="row">
+            <div class="col-6">
+              <label for="empName">Employee Name</label>
+              <input
+                #empName="ngModel"
+                [(ngModel)]="clientProjectObject.empName"
+                class="form-control"
+                id="empName"
+                name="empName"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (empName?.errors?.["required"] && empName?.touched) {
+                  <span>Employee Name is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="empId">Employee ID</label>
+              <input
+                #empId="ngModel"
+                [(ngModel)]="clientProjectObject.empId"
+                class="form-control"
+                id="empId"
+                name="empId"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (empId?.errors?.["required"] && empId?.touched) {
+                  <span>Employee ID is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="empCode">Employee Code</label>
+              <input
+                #empCode="ngModel"
+                [(ngModel)]="clientProjectObject.empCode"
+                class="form-control"
+                id="empCode"
+                name="empCode"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (empCode?.errors?.["required"] && empCode?.touched) {
+                  <span>Employee Code is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="empEmailId">Email</label>
+              <input
+                #empEmailId="ngModel"
+                [(ngModel)]="clientProjectObject.empEmailId"
+                class="form-control"
+                id="empEmailId"
+                name="empEmailId"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (empEmailId?.errors?.["required"] && empEmailId?.touched) {
+                  <span>Email is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="empDesignation">Designation</label>
+              <input
+                #empDesignation="ngModel"
+                [(ngModel)]="clientProjectObject.empDesignation"
+                class="form-control"
+                id="empDesignation"
+                name="empDesignation"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  empDesignation?.errors?.["required"] &&
+                  empDesignation?.touched
+                ) {
+                  <span>Designation is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="projectName">Project Name</label>
+              <input
+                #projectName="ngModel"
+                [(ngModel)]="clientProjectObject.projectName"
+                class="form-control"
+                id="projectName"
+                name="projectName"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  projectName?.errors?.["required"] && projectName?.touched
+                ) {
+                  <span>Project Name is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="startDate">Start Date</label>
+              <input
+                #startDate="ngModel"
+                [(ngModel)]="clientProjectObject.startDate"
+                class="form-control"
+                id="startDate"
+                name="startDate"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (startDate?.errors?.["required"] && startDate?.touched) {
+                  <span>Start Date is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="expectedEndDate">End Date</label>
+              <input
+                #expectedEndDate="ngModel"
+                [(ngModel)]="clientProjectObject.expectedEndDate"
+                class="form-control"
+                id="expectedEndDate"
+                name="expectedEndDate"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  expectedEndDate?.errors?.["required"] &&
+                  expectedEndDate?.touched
+                ) {
+                  <span>End Date is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="clientName">Client Name</label>
+              <input
+                #clientName="ngModel"
+                [(ngModel)]="clientProjectObject.clientName"
+                class="form-control"
+                id="clientName"
+                name="clientName"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (clientName?.errors?.["required"] && clientName?.touched) {
+                  <span>Client Name is required</span>
+                }
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label for="clientProjectId">Project ID</label>
+              <input
+                #clientProjectId="ngModel"
+                [(ngModel)]="clientProjectObject.clientProjectId"
+                class="form-control"
+                id="clientProjectId"
+                name="clientProjectId"
+                required
+                type="text"
+              />
+              <div class="text-danger">
+                @if (
+                  clientProjectId?.errors?.["required"] &&
+                  clientProjectId?.touched
+                ) {
+                  <span>Project ID is required</span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="row pt-4 justify-content-center">
+            <div class="col-4 text-center">
+              <button (click)="onResetForm()" class="btn btn-secondary mx-2">
+                Reset Form
+              </button>
+              <button
+                (click)="onAddUpdateClientProject()"
+                [disabled]="!formElement.valid"
+                class="btn btn-success mx-2"
+              >
+                {{ clientProjectObject.clientProjectId ? "Save" : "Update" }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding-top: 30px">
+    <div class="row">
+      @if (isLoading) {
+        <div class="col-12 text-center">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="col-15">
+          <div class="card">
+            <div class="card-header bg-success">Client List</div>
+            <div class="card-body">
+              <table class="table table-bordered border-primary">
+                <thead>
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Email</th>
+                    <th>Project Name</th>
+                    <th>State Date</th>
+                    <th>End Date</th>
+                    <th>Client Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of clientProjectsList; track item) {
+                    <tr>
+                      <td>{{ item.empName }}</td>
+                      <td>{{ item.empEmailId }}</td>
+                      <td>{{ item.projectName }}</td>
+                      <td>{{ item.startDate }}</td>
+                      <td>{{ item.expectedEndDate }}</td>
+                      <td>{{ item.clientName }}</td>
+
+                      <td>
+                        <div>
+                          <button
+                            class="btn btn-primary mx-2"
+                            (click)="onEditClientProject(item)"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-danger mx-2"
+                            (click)="
+                              onDeleteClientProject(item.clientProjectId)
+                            "
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
